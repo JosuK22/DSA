@@ -1,0 +1,463 @@
+1)Reverse String-Recursion
+
+public class Main{   
+    void reverseString(String string){   
+        if ((string==null)||(string.length() <= 1))   
+            System.out.println(string);   
+        else{   
+            System.out.print(string.charAt(string.length()-1));   
+            reverseString(string.substring(0,string.length()-1));   
+            }   
+    }       
+    public static void main(String[] args){   
+ 
+        String str = "Joseph";   
+        Main rs = new Main();  
+        rs.reverseString(str);   
+    }      
+}  
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2)Sum of Array_Recursive
+
+import java.util.Scanner;
+public class Main {
+    static int n;
+    static int arr[] = { 1, 2, 3, 4, 5 };
+    static int findSum(int A[], int N)
+    {
+        if (N <= 0){
+            return 0;
+        }
+        return (findSum(A, N - 1) + A[N - 1]);
+    }
+    public static void main(String[] args){
+        
+        Scanner sc=new Scanner(System.in);  
+        System.out.print("Enter the number of elements you want to store: ");
+        n=sc.nextInt();
+        int[] array = new int[10];
+        
+        System.out.println("Enter the elements of the array: ");  
+        for(int i=0; i<n; i++){
+            array[i]=sc.nextInt();  
+        }
+        System.out.print("Sum is :");
+        System.out.println(findSum(array, n));
+        
+    }
+}
+
+____________________________________________________________________________________________________________________
+
+3)Matrix_Spiral_Anticlockwise
+
+import java.io.*;
+ 
+public class Main {
+ 
+    static void spiralPrint(int m, int n, int a[][])
+    {
+        int i, k = 0, l = 0;
+        
+        /*  k - starting row index
+        m - ending row index
+        l - starting column index
+        n - ending column index
+        */
+        
+        while (k < m && l < n) {
+            for (i = k; i < m; ++i) {
+                System.out.print(a[i][l] + " ");
+            }
+            l++;
+ 
+            
+            for (i = l; i < n; ++i) {
+                System.out.print(a[m-1][i] + " ");
+            }
+            m--;
+            
+            if (k < m) {
+                for (i= m-1; i >=k; --i) {
+                    System.out.print(a[i][n-1] + " ");
+                }
+                n--;
+            }
+            
+            if (l < n && k < m) {
+                for (i = n - 1; i >= l; --i) {
+                    System.out.print(a[k][i] + " ");
+                }
+                k++;
+            }
+        }
+    }
+ 
+
+    public static void main(String[] args)
+    {
+        int R = 3;
+        int C = 6;
+        int a[][] = { { 1, 2, 3, 4, 5, 6 },
+                      { 7, 8, 9, 10, 11, 12 },
+                      { 13, 14, 15, 16, 17, 18 } };
+ 
+        spiralPrint(R, C, a);
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4) Wave and reverse wave of a matrix :-
+
+import java.io.*;
+import java.util.*;
+ 
+public class Main{
+    static int R = 4;
+    static int C = 4;
+    static void ReverseWave(int m, int n, int arr[][])
+    {
+        int i, j = n - 1, wave = 1;
+     
+        while (j >= 0)
+        {
+             
+            if (wave == 1)
+            {
+                for (i = 0; i < m; i++)
+                    System.out.print(arr[i][j] +" ");
+             
+                wave = 0;
+                j--;
+            }
+            else {
+                 
+                for (i = m - 1; i >= 0; i--)
+                    System.out.print( arr[i][j] + " ");
+                 
+                wave = 1;
+                j--;
+            }
+        }
+    }
+    
+     static void WavePrint(int m, int n, int arr[][])
+    {
+        int i, j = 0, wave = 1;
+     
+        while (j < n )
+        {
+             
+            if (wave == 1)
+            {
+                for (i = 0; i < m; i++)
+                    System.out.print(arr[i][j] +" ");
+             
+                wave = 0;
+                j++;
+            }
+            else {
+                 
+                for (i = m - 1; i >= 0; i--)
+                    System.out.print( arr[i][j] + " ");
+                 
+                wave = 1;
+                j++;
+            }
+        }
+    }
+    
+    public static void MatrixDisplay(int mat[][])
+    {
+        System.out.println("The given matrix is ;");  
+        for (int[] row : mat){
+            
+            
+            System.out.println(Arrays.toString(row));
+        }
+    }
+ 
+    public static void main (String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("(1. Wave Matrix , 2. Reverse wave Matrix)");
+        System.out.print("Enter the choice :");
+        int num = sc.nextInt();
+        int arr[][] = { { 1, 2, 3, 4 },
+                    { 5, 6, 7, 8 },
+                    { 9, 10, 11, 12 },
+                    { 13, 14, 15, 16 } };
+        if(num == 1){
+            
+            MatrixDisplay(arr);
+            System.out.println();
+            System.out.println("The wave display of the given matrix is :-");
+            WavePrint(R, C, arr);
+            
+            
+        }
+       
+        if(num == 2){
+            MatrixDisplay(arr);
+            System.out.println();
+            System.out.println("Reverse Wave made from the given Matrix is :-");
+            ReverseWave(R,C,arr);
+        }
+       /* else{ 
+            System.out.println("invalid input");
+            
+        }*/
+     
+    }
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5)Find the differene in string(leetcode)
+
+class Solution {
+public char findTheDifference(String s, String t) {
+
+    String originalS = s;  
+    char[] charsS = originalS.toCharArray();
+    Arrays.sort(charsS);  
+    
+    String originalT = t; 
+    char[] charsT = originalT.toCharArray();
+    Arrays.sort(charsT); 
+    
+    
+    for(int i=0;i<charsS.length;i++){
+        if(charsS[i]!=charsT[i]){
+            return charsT[i];
+        }
+    }
+    
+    return charsT[charsT.length-1];
+    
+    
+}
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6)Add elements in arraylist and change the 3rd index element 
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+ 
+public class Main{
+ 
+    
+    public static void main(String[] args)
+    {
+        
+        ArrayList<String> list = new ArrayList<>();
+ 
+     
+        list.add("A ");
+        list.add("B ");
+        list.add("C ");
+        list.add("D ");
+        list.add("E");
+        //list.remove(3);
+        
+        System.out.println(list);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the Index number to remove :");
+        int n =sc.nextInt();
+        list.remove(n);
+        System.out.println(list);
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+7)Copy all elements from one list to another
+
+import java.io.*;
+import java.util.ArrayList;
+  
+public class Main {
+    public static void main(String[] args)
+    {
+        ArrayList<Integer> list1 = new ArrayList<>();
+
+        list1.add(10);
+        list1.add(21);
+        list1.add(22);
+        list1.add(35);
+        
+        System.out.println("First ArrayList");
+        System.out.println(list1);
+        
+        ArrayList<Integer> list2 = new ArrayList<>(list1);
+        
+        System.out.println("Second Array List Elements ");
+        for (Integer value : list2) {
+            System.out.println(value);
+        }
+       
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+8)Arraylist descending order Sorting
+
+
+import java.util.*;
+  
+public class Main {
+    public static void main(String args[]){
+  
+        ArrayList<Integer>
+            list = new ArrayList<Integer>();
+  
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+  
+        System.out.println("Unsorted ArrayList: " + list);
+  
+        Collections.sort(list, Collections.reverseOrder());
+  
+        System.out.println(" Descending order of the given ArrayList : "+ list);
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9)Smallest missing element of an array 
+
+import java.io.*;
+ 
+public class Main{
+   
+    int SmallestMissingElement(int[] arr)
+    {
+      
+      if(arr[0] != 0)
+        return 0;
+       
+      if(arr[arr.length-1] == arr.length - 1)
+        return arr.length;
+       
+      int first = arr[0];
+ 
+      return findFirstMissing(arr,0,arr.length-1,first);
+    }
+     
+    int findFirstMissing(int[] arr , int start ,
+                              int end, int first)
+    {
+       
+      if (start < end)
+      {
+        int mid = (start+end)/2;
+ 
+        if (arr[mid] != mid+first)
+          return findFirstMissing(arr, start,mid , first);
+        else
+          return findFirstMissing(arr, mid+1,end , first);
+      }
+      return start+first;
+ 
+    }
+   
+    
+    public static void main(String[] args)
+    {
+        Main small = new Main();
+        int arr[] = {0, 2, 3, 4, 5, 7};
+        int n = arr.length;
+         
+       
+        System.out.println("First Missing element is : "+ small.SmallestMissingElement(arr));
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10)Missing term in a sequence 
+
+public class Main
+{
+    
+    public static int findMissingTerm(int[] nums)
+    {
+        
+        int left = 0, right = nums.length - 1;
+ 
+       
+        int diff = (nums[nums.length - 1] - nums[0]) / nums.length;
+ 
+        
+        while (left <= right)
+        {
+
+            int mid = right - (right - left) / 2;
+ 
+            if (mid + 1 < nums.length && nums[mid + 1] - nums[mid] != diff) {
+                return nums[mid + 1] - diff;
+            }
+ 
+            if (mid - 1 >= 0 && nums[mid] - nums[mid - 1] != diff) {
+                return nums[mid - 1] + diff;
+            }
+ 
+            if (nums[mid] - nums[0] != (mid - 0) * diff) {
+                right = mid - 1;
+            }
+ 
+            else {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
+ 
+    public static void main(String[] args)
+    {
+        int[] nums = { 5, 7, 11, 13, 15 };
+ 
+        System.out.println("The missing term is " + findMissingTerm(nums));
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+11)Factorial 
+
+import java.util.Scanner;
+
+public class Main{  
+    
+    public static void main(String args[]){ 
+        
+        int i,fact=1;
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter a Number :");
+        int number = sc.nextInt();
+        
+        for(i=1;i<=number;i++){  
+            
+            fact = fact*i;    
+        }
+        
+        System.out.println("Factorial of "+number+" is: "+fact);    
+    }  
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------  
+
+12)
+
